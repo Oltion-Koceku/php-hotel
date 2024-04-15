@@ -39,7 +39,9 @@ $hotels = [
   ],
 
 ];
-
+$forum_parking = $_GET['parking'];
+$forum_vote = $_GET['voto'];
+var_dump($forum_parking);
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +59,34 @@ $hotels = [
 <body>
   <div class="container d-flex flex-column ">
 
+
+    <form action="index.php" method="get">
+      <label for="voto">Voto</label>
+      <select name="voto" id="voto">
+        
+        <?php 
+          foreach ($hotels as $key => $item) :
+            $vote = $item['vote'];
+          
+        ?>
+
+         <option value="<?php echo $vote ?>"><?php echo $vote ?></option>
+        <?php endforeach ?>
+
+      </select>
+      <label for="parking">Parking</label>
+      <select name="parking" id="parking">
+        <option value="no">No</option>
+        <option value="si">Si</option>
+      </select>
+            <button type="submit">Submit</button>
+    </form>
+
+
     <h1>Hotels</h1>
 
     <div class="d-flex flex-wrap ">
+
       <?php
       foreach ($hotels as $key => $item) :
         $name = $item['name'];
@@ -67,6 +94,7 @@ $hotels = [
         $vote = $item['vote'];
         $parking_status = $parking ? 'si' : 'no';
       ?>
+        <?php if($parking_status === $forum_parking) : ?>
         <div class="card d-flex flex-column align-items-center text-center " style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title"><?php echo $name ?></h5>
@@ -74,7 +102,7 @@ $hotels = [
             <p class="card-text">Il parcheggio è presente?:<?php echo $parking_status ?></p>
           </div>
         </div>
-
+        <?php endif ?>
 
       <?php endforeach ?>
     </div>
