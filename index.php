@@ -53,6 +53,22 @@
   <title>PHP Hotel</title>
 </head>
 <body>
-  
+  <div class="container">
+    
+      <h1>Hotels</h1>
+
+      <ul>
+        <?php 
+          foreach($hotels as $key => $item):
+            $name = $item['name'];
+            $parking = $item['parking'];
+            $vote = $item['vote'];
+            $parking_status = $parking ? 'si' : 'no';
+        ?>
+        <li><?php echo $name ?> Voto: <?php echo $vote ?> Parcheggio: <?php echo $parking_status ?></li>
+        <?php endforeach ?>
+      </ul>
+    
+  </div>
 </body>
 </html>
