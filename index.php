@@ -63,6 +63,7 @@ var_dump($forum_parking);
     <form action="index.php" method="get">
       <label for="voto">Voto</label>
       <select name="voto" id="voto">
+        <option value="">Seleziona</option>
         
         <?php 
           foreach ($hotels as $key => $item) :
@@ -71,11 +72,13 @@ var_dump($forum_parking);
         ?>
 
          <option value="<?php echo $vote ?>"><?php echo $vote ?></option>
+
         <?php endforeach ?>
 
       </select>
       <label for="parking">Parking</label>
       <select name="parking" id="parking">
+        <option value="">Seleziona</option>
         <option value="no">No</option>
         <option value="si">Si</option>
       </select>
@@ -95,6 +98,10 @@ var_dump($forum_parking);
         $parking_status = $parking ? 'si' : 'no';
       ?>
         <?php if($parking_status === $forum_parking) : ?>
+
+
+        <?php elseif($forum_vote <= $vote) : ?>
+
         <div class="card d-flex flex-column align-items-center text-center " style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title"><?php echo $name ?></h5>
